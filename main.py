@@ -18,6 +18,10 @@ while True:
     client = input("(Deposit, Withdraw, Balance, Create Account, Close Account, Modify):")
     if client.lower() == "deposit":
         database_functions.deposit()
+    elif client.lower() == "withdraw":
+        database_functions.withdraw()
+    elif client.lower() == "balance":
+        database_functions.balance()
         while True:
             client2 = input("Is that all we can do for you today?")
             if client2 == "yes":
