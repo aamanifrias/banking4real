@@ -13,13 +13,17 @@ cursor = connection.cursor()
 print("-~-~-~-~-BANK4REAL-~-~-~-~-")
 
 while True:
-    client = input("Choose an option(Deposit, Withdraw, Balance, Create Account, Close Account, Modify): )")
+    print(f'Welcome to Bank4Real, the realest bank of them all!')
+    print("How may we assist you today? Choose an option Below.")
+    client = input("(Deposit, Withdraw, Balance, Create Account, Close Account, Modify):")
     if client.lower() == "deposit":
         database_functions.deposit()
         while True:
             client2 = input("Is that all we can do for you today?")
             if client2 == "yes":
+                print(f'Have a good day!')
                 break
             elif client2 == "no":
+                print(f'How else may we assist you?')
                 break
             else: print("Try again in a moment")
