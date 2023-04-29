@@ -24,6 +24,8 @@ while True:
         database_functions.balance()
     elif client.lower() == "create account":
         database_functions.createAcc()
+    elif client.lower() == "delete account":
+        database_functions.deleteAcc()
         
         while True:
             client2 = input("Is that all we can do for you today?")
