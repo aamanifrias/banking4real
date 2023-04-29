@@ -22,6 +22,9 @@ while True:
         database_functions.withdraw()
     elif client.lower() == "balance":
         database_functions.balance()
+    elif client.lower() == "create account":
+        database_functions.createAcc()
+        
         while True:
             client2 = input("Is that all we can do for you today?")
             if client2 == "yes":
