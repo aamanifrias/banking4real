@@ -33,9 +33,14 @@ def deposit():
     print()
 
 def createAcc():
-    bankid = int(input("Enter your Bank ID: " ))
-    bankpin = int(input("Enter your Bank Pin: "))
-    #
+    newID = int(input(f'Enter a unique Bank ID:  '))
+    newPin = int(input(f'Enter a unique Bank Pin:  '))
+    namie = input(f'Enter a Name: ')
+    bal = int(input(f'Enter an intial Balance: '))
+    youngness = int(input(f'Enter a age: '))
+    if youngness < 18:
+        print(f'Too young to create an account.')
+    cursor.execute(f'UPDATE bankinfo SET bankid = newID, bankpin = newPin, name = namie, balance = bal, age = youngness WHERE  ')
 
 def withdraw():
     bankid = int(input("Enter your Bank ID: "))
