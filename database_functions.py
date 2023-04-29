@@ -34,13 +34,21 @@ def deposit():
 
 def createAcc():
     newID = int(input(f'Enter a unique Bank ID:  '))
-    newPin = int(input(f'Enter a unique Bank Pin:  '))
+    newPin = input(f'Enter a unique Bank Pin:  ')
     namie = input(f'Enter a Name: ')
     bal = int(input(f'Enter an intial Balance: '))
     youngness = int(input(f'Enter a age: '))
-    if youngness < 18:
-        print(f'Too young to create an account.')
-    cursor.execute(f'INSERT INTO bankinfo (bankid, name, balance, age, bankpin) VALUES ({newID}, \"{namie}\", {bal}, \"{youngness}\", {newPin})')
+    cursor.execute(f'INSERT INTO bankinfo (bankid, name, balance, age, bankpin) VALUES ({newID}, \"{namie}\", {bal}, {youngness}, \"{newPin}\")')
+    connection.commit()
+
+def deleteAcc():
+    while True:
+            cursor.reset()
+            bankid = input("Please enter your Bank Account ID: ")
+            logInACCPW = input("Please enter the user's account PIN: ")
+            cursor.execute(f'SELECT EXISTS(SELECT accountid FROM bank_database.user WHERE accountid = {logInAccID} AND pin_code = {logInACCPW})')
+
+
 
 def withdraw():
     bankid = int(input("Enter your Bank ID: "))
