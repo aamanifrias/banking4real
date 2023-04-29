@@ -40,7 +40,7 @@ def createAcc():
     youngness = int(input(f'Enter a age: '))
     if youngness < 18:
         print(f'Too young to create an account.')
-    cursor.execute(f'UPDATE bankinfo SET bankid = newID, bankpin = newPin, name = namie, balance = bal, age = youngness WHERE  ')
+    cursor.execute(f'INSERT INTO bankinfo (bankid, name, balance, age, bankpin) VALUES ({newID}, \"{namie}\", {bal}, \"{youngness}\", {newPin})')
 
 def withdraw():
     bankid = int(input("Enter your Bank ID: "))
