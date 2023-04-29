@@ -32,22 +32,31 @@ def deposit():
         print(f'New Balance: ${item[0]}')
     print()
 
+def createAcc():
+    bankid = int(input("Enter your Bank ID: " ))
+    bankpin = int(input("Enter your Bank Pin: "))
+    #
+
 def withdraw():
     bankid = int(input("Enter your Bank ID: "))
     bankpin = int(input("Enter your Bank Pin: "))
-    cursor.execute(f'SELECT balance FROM bankinfo WHERE bankid = {bankid} AND bankpin ={bankpin}')
     while True:
-        amtwithdraw = int(input("Enter the amount you would like to Withdraw: "))
-        if amtwithdraw < 200:
-            print("Amount too high, please try again.")
-        else:
+        cursor.reset()
+        amtwithdraw = int(input("How much would you like to withdraw from your account? "))
+        cursor.execute(f'SELECT balance FROM bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin}')
+        intial = 20
+        for item in cursor:
+            for thing in cursor:
+                intial = thing
+        if amtwithdraw < intial and amtwithdraw > 0:
+            cursor.execute(f'UPDATE bankinfo SET balance = balance - {amtwithdraw} WHERE bankid = {bankid} AND bankpin = {bankpin}')
+            cursor.execute(f'SELECT balance FROM bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin}')
+            for item in cursor:
+                print(f'Successfully widthdrew ${amtwithdraw} The new balance for bank number {bankid} is {item[0]}.')
+            connection.commit() #ESSENTIAL PIECE OF CODE TO ENSURE CHANGES ARE PERMANENT!
             break
-    cursor.execute(f'UPDATE bankinfo SET balance = balance - {amtwithdraw} WHERE bankid = {bankid} AND bankpin = {bankpin}')
-    cursor.execute(f'SELECT balance FROM bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin}')
-    for item in cursor:
-        print(f'${amtwithdraw} was sucessfully withdrawn')
-        print(f'New Balance: ${item[0]}')
-    print()
+        else:
+            print("The amount of money you're trying to withdraw is larger than your balance, please try again.")
 
 
     connection.commit()
