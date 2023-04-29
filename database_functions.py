@@ -45,9 +45,12 @@ def deleteAcc():
     while True:
             cursor.reset()
             bankid = input("Please enter your Bank Account ID: ")
-            logInACCPW = input("Please enter the user's account PIN: ")
-            cursor.execute(f'SELECT EXISTS(SELECT accountid FROM bank_database.user WHERE accountid = {logInAccID} AND pin_code = {logInACCPW})')
-
+            bankpin = input("Please enter the user's account PIN: ")
+            cursor.execute(f'SELECT EXISTS(SELECT bankid FROM bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin})')
+validSeq = str(input(f'Are you sure you want to Delete this Account?'))
+if validSeq == "yes":
+    cursor.execute(f'DELETE FROM bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin}')
+    print("\nUser account successfully deleted.")
 
 
 def withdraw():
