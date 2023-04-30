@@ -33,6 +33,7 @@ def deposit():
     print()
 
 def createAcc():
+    cursor.reset()
     newID = int(input(f'Enter a unique Bank ID:  '))
     newPin = input(f'Enter a unique Bank Pin:  ')
     namie = input(f'Enter a Name: ')
@@ -42,16 +43,16 @@ def createAcc():
     connection.commit()
 
 def deleteAcc():
+    cursor.reset()
+    bankid = int(input("Please enter your Bank Account ID: "))
+    bankpin = int(input("Please enter the Account's PIN: "))
     while True:
-            cursor.reset()
-            bankid = input("Please enter your Bank Account ID: ")
-            bankpin = input("Please enter the user's account PIN: ")
-            cursor.execute(f'SELECT EXISTS(SELECT bankid FROM bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin})')
-validSeq = str(input(f'Are you sure you want to Delete this Account?'))
-if validSeq == "yes":
-    cursor.execute(f'DELETE FROM bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin}')
-    print("\nUser account successfully deleted.")
-
+        validSeq = str(input(f'Are you sure you want to Delete this Account?'))
+        if validSeq == "yes":
+            cursor.execute(f'DELETE FROM banking.bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin}')
+            print("\nUser account successfully deleted.")
+            break
+    connection.commit()
 
 def withdraw():
     bankid = int(input("Enter your Bank ID: "))
@@ -69,7 +70,7 @@ def withdraw():
             cursor.execute(f'SELECT balance FROM bankinfo WHERE bankid = {bankid} AND bankpin = {bankpin}')
             for item in cursor:
                 print(f'Successfully widthdrew ${amtwithdraw} The new balance for bank number {bankid} is {item[0]}.')
-            connection.commit() #ESSENTIAL PIECE OF CODE TO ENSURE CHANGES ARE PERMANENT!
+            connection.commit()
             break
         else:
             print("The amount of money you're trying to withdraw is larger than your balance, please try again.")
