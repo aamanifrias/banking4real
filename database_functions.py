@@ -40,6 +40,7 @@ def createAcc():
     bal = int(input(f'Enter an intial Balance: '))
     youngness = int(input(f'Enter a age: '))
     cursor.execute(f'INSERT INTO bankinfo (bankid, name, balance, age, bankpin) VALUES ({newID}, \"{namie}\", {bal}, {youngness}, \"{newPin}\")')
+    
     connection.commit()
 
 def deleteAcc():

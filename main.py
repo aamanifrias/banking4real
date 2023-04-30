@@ -13,7 +13,7 @@ cursor = connection.cursor()
 print("-~-~-~-~-BANK4REAL-~-~-~-~-")
 
 while True:
-    print(f'Welcome to Bank4Real, the realest bank of them all!')
+    print(f'\nWelcome to Bank4Real, the realest bank of them all!')
     print("How may we assist you today? Choose an option Below.")
     client = input("(Deposit, Withdraw, Balance, Create Account, Close Account, Modify):")
     if client.lower() == "deposit":
