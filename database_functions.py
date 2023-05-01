@@ -11,7 +11,8 @@ cursor = connection.cursor()
 def balance():
     bankid = int(input("Enter your Bank ID: "))
     bankpin = int(input("Enter your Bank Pin: "))
-    cursor.execute(f'SELECT balance FROM bankinfo WHERE bankid = {bankid} AND bankpin ={bankpin}')
+    nombre = str(input("Enter the name of the Account Holder: "))
+    cursor.execute(f'SELECT balance FROM bankinfo WHERE bankid = {bankid} AND bankpin ={bankpin} AND name = \"{nombre}\"')
     for item in cursor:
         print(f'Current Balance: ${item[0]}')
     print()
@@ -54,6 +55,24 @@ def deleteAcc():
             print("\nUser account successfully deleted.")
             break
     connection.commit()
+
+def modify():
+    #cursor.reset()
+    bankid = int(input("Please enter your Bank Accoun ID: "))
+    bankpin = int(input("Please enter the Account's PIN: "))
+    bankname = str(input("Please enter the name of the Account Holder: "))
+    while True:
+        newClient = str(input("Enter the new name of the account: "))
+        if len(newClient) > 0:
+            break
+        else:
+            print("Please enter a name.")
+    cursor.execute(f'UPDATE banking.bankinfo SET name = \"{newClient}\" WHERE bankid = {bankid} AND bankpin = {bankpin}')
+    print(f"\nSuccessfully changed the name of user account from {bankname} to {newClient}")
+    connection.commit()
+    
+
+
 
 def withdraw():
     bankid = int(input("Enter your Bank ID: "))
