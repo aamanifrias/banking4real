@@ -71,7 +71,20 @@ def modify():
     print(f"\nSuccessfully changed the name of user account from {bankname} to {newClient}")
     connection.commit()
     
-
+def modifypin():
+    #cursor.reset()
+    bankid = int(input("Please enter your Bank Accoun ID: "))
+    bankpin = int(input("Please enter the Account's PIN: "))
+    bankname = str(input("Please enter the name of the Account Holder: "))
+    while True:
+        newClientpin = int(input("Enter the new name of the account: "))
+        if (newClientpin) > 0:
+            break
+        else:
+            print("Please enter a name.")
+    cursor.execute(f'UPDATE banking.bankinfo SET bankpin = \"{newClientpin}\" WHERE bankid = {bankid} AND bankpin = {bankpin}')
+    print(f"\nSuccessfully changed the name of user account from {bankpin} to {newClientpin}")
+    connection.commit()
 
 
 def withdraw():

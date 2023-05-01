@@ -15,7 +15,7 @@ print("-~-~-~-~-BANK4REAL-~-~-~-~-")
 while True:
     print(f'\nWelcome to Bank4Real, the realest bank of them all!')
     print("How may we assist you today? Choose an option Below.")
-    client = input("(Deposit, Withdraw, Balance Inquiry, Create Account, Delete Account, Modify):")
+    client = input("(Deposit, Withdraw, Balance Inquiry, Create Account, Delete Account, Modify(modify name or pin)):")
     if client.lower() == "deposit":
         database_functions.deposit()
     elif client.lower() == "withdraw":
@@ -26,9 +26,10 @@ while True:
         database_functions.createAcc()
     elif client.lower() == "delete account":
         database_functions.deleteAcc()
-    elif client.lower() == "modify":
+    elif client.lower() == "modify name":
         database_functions.modify()
-        
+    elif client.lower() == "modify pin":
+        database_functions.modifypin()    
         
         while True:
             client2 = input("Is that all we can do for you today?")
