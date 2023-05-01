@@ -15,7 +15,7 @@ print("-~-~-~-~-BANK4REAL-~-~-~-~-")
 while True:
     print(f'\nWelcome to Bank4Real, the realest bank of them all!')
     print("How may we assist you today? Choose an option Below.")
-    client = input("(Deposit, Withdraw, Balance, Create Account, Close Account, Modify):")
+    client = input("(Deposit, Withdraw, Balance, Create Account, Delete Account, Modify):")
     if client.lower() == "deposit":
         database_functions.deposit()
     elif client.lower() == "withdraw":
